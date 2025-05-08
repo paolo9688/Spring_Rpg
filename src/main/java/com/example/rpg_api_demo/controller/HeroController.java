@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.awt.print.Book;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/heroes")
@@ -21,6 +22,7 @@ public class HeroController {
         this.heroService = heroService;
     }
 
+    // Trova tutti gli eroi:
     @GetMapping("/find_all_heroes")
     public ResponseEntity<List<Hero>> getHeroes() {
 
@@ -32,6 +34,7 @@ public class HeroController {
         return ResponseEntity.ok(heroes);
     }
 
+    // Trova eroe per id:
     @GetMapping("/find_hero_by_id/{id}")
     public ResponseEntity<Hero> getHeroById(@PathVariable Long id) {
 
@@ -43,10 +46,42 @@ public class HeroController {
         return ResponseEntity.ok(hero);
     }
 
-    // Aggiungi un nuovo eroe
+    // Aggiungi un nuovo eroe:
     @PostMapping("/create_hero")
     public ResponseEntity<Hero> createHero(@RequestBody Hero hero) {
         Hero heroToAdd = heroService.createHero(hero);
-        return ResponseEntity.status(HttpStatus.CREATED).body(heroToAdd);
+        return ResponseEntity.ok(heroToAdd);
+    }
+
+    // Aggiorna un eroe esistente:
+    @PutMapping("/update_hero/{id}")
+    public ResponseEntity<Hero> updateHero(@PathVariable Long id, @RequestBody Hero heroDetails) {
+        Optional<Hero> heroToUpdate = heroService.updateHero(id, heroDetails);
+
+        if (heroToUpdate.isPresent()) {
+            return ResponseEntity.ok(heroToUpdate.get());
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    // Cancella un eroe esistente:
+    @DeleteMapping("/delete_hero/{id}")
+    public ResponseEntity<Hero> deleteHero(@PathVariable Long id) {
+        Hero heroToDelete = heroService.deleteHero(id);
+
+        if (heroToDelete == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(heroToDelete);
+    }
+
+    @GetMapping("/class/{className}")
+    public ResponseEntity<List<Hero>> getHeroesByClass(@PathVariable String className) {
+        List<Hero> heroToFind = heroService.findHeroesByClass(className);
+
+        if (heroToFind == null) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(heroToFind);
     }
 }
