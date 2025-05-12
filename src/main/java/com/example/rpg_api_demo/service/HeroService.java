@@ -102,4 +102,16 @@ public class HeroService {
         // Usa gli stream e il metodo filter sulla mappa dei valori.
         return heroesToFindList; // Sostituisci con l'implementazione
     }
+
+    public List<Hero> findHeroesWithHealthAbove(int minHealth) {
+        List<Hero> heroesToFindList = new ArrayList<>();
+
+        for (Hero hero : heroes.values()) {
+            if (hero.getHeroClass().equals(heroClass)) {
+                heroesToFindList.add(hero);
+            }
+        }
+        // Usa stream, filter e collect
+        return null; // Sostituisci con l'implementazione
+    }
 }

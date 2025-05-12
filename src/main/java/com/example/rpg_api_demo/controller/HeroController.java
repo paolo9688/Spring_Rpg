@@ -3,11 +3,9 @@ package com.example.rpg_api_demo.controller;
 import com.example.rpg_api_demo.model.Hero;
 import com.example.rpg_api_demo.service.HeroService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.print.Book;
 import java.util.List;
 import java.util.Optional;
 
