@@ -9,7 +9,7 @@ import java.util.*;
 public class HeroService {
     private final Map<Long, Hero> heroes = new HashMap<Long, Hero>() {{
         put(1L, new Hero(1L, "Aragorn", "Ranger", 85, 2000, 150));
-        put(2L, new Hero(50L, "Pikachu", "Elf", 50, 500, 50));
+        put(2L, new Hero(50L, "Pikachu", "Elf", 90, 500, 50));
         put(3L, new Hero(8L, "Ash", "Imperial", 11, 1000, 100));
     }};
 
@@ -102,6 +102,7 @@ public class HeroService {
         return heroesToFindList;
     }
 
+    // Trova gli eroi con vita maggiore di un certo livello:
     public List<Hero> findHeroesWithHealthAbove(Integer minHealth) {
         List<Hero> heroesToFindList = new ArrayList<>();
 
@@ -112,5 +113,15 @@ public class HeroService {
         }
 
         return heroesToFindList;
+    }
+
+    // Ritorna tutti gli eroi ordinati per livello decrescente:
+    public List<Hero> getAllHeroesSortedByLevelDesc() {
+        List<Hero> heroesSortedByLevelDesc = new ArrayList<>(heroes.values());
+
+        // ordino la lista di eroi per livello in ordine decrescente
+        heroesSortedByLevelDesc.sort((o1, o2) -> o2.getLevel().compareTo(o1.getLevel()));
+
+        return heroesSortedByLevelDesc;
     }
 }

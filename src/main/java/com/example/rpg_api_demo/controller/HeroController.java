@@ -73,6 +73,7 @@ public class HeroController {
         return ResponseEntity.ok(heroToDelete);
     }
 
+    // Ritorna un eroe per classe di appartenenza:
     @GetMapping("/class/{className}")
     public ResponseEntity<List<Hero>> getHeroesByClass(@PathVariable String className) {
         List<Hero> heroToFind = heroService.findHeroesByClass(className);
@@ -83,12 +84,22 @@ public class HeroController {
         return ResponseEntity.ok(heroToFind);
     }
 
+    // Ritorna tutti gli eroi con salute maggiore di un certo valore minimo:
     @GetMapping("/health-above")
     public ResponseEntity<List<Hero>> getHeroesWithHealthAbove(@RequestParam Integer minHealth) {
         List<Hero> heroes = heroService.findHeroesWithHealthAbove(minHealth);
 
-        // Restituisci la ResponseEntity appropriata (OK con la lista, anche se vuota)
-        //return ResponseEntity.ok(heroes);
+        if (heroes == null) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(heroes);
+    }
+
+    // Ritorna tutti gli eroi filtrati per livello decrescente:
+    @GetMapping("/sorted/level-desc")
+    public ResponseEntity<List<Hero>> getAllHeroesSortedByLevelDesc() {
+        List<Hero> heroes = heroService.getAllHeroesSortedByLevelDesc();
+
         if (heroes == null) {
             return ResponseEntity.noContent().build();
         }
