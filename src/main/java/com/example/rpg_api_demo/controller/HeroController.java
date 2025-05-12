@@ -82,4 +82,16 @@ public class HeroController {
         }
         return ResponseEntity.ok(heroToFind);
     }
+
+    @GetMapping("/health-above")
+    public ResponseEntity<List<Hero>> getHeroesWithHealthAbove(@RequestParam Integer minHealth) {
+        List<Hero> heroes = heroService.findHeroesWithHealthAbove(minHealth);
+
+        // Restituisci la ResponseEntity appropriata (OK con la lista, anche se vuota)
+        //return ResponseEntity.ok(heroes);
+        if (heroes == null) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(heroes);
+    }
 }
