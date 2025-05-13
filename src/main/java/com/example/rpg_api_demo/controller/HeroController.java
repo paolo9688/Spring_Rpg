@@ -40,10 +40,10 @@ public class HeroController {
     }
 
     // Trova eroe per id:
-    /*@GetMapping("/find_hero_by_id/{id}")
-    public ResponseEntity<Hero> getHeroById(@PathVariable Long id) {
+    @GetMapping("/find_hero_by_id/{id}")
+    public ResponseEntity<Optional<Hero>> getHeroById(@PathVariable Long id) {
 
-        Hero hero = heroService.getHeroById(id);
+        Optional<Hero> hero = heroService.getHeroById(id);
 
         if(hero == null) {
             return ResponseEntity.notFound().build();
@@ -52,7 +52,7 @@ public class HeroController {
     }
 
     // Aggiorna un eroe esistente:
-    @PutMapping("/update_hero/{id}")
+    /*@PutMapping("/update_hero/{id}")
     public ResponseEntity<Hero> updateHero(@PathVariable Long id, @RequestBody Hero heroDetails) {
         Optional<Hero> heroToUpdate = heroService.updateHero(id, heroDetails);
 

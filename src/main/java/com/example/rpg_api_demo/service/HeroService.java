@@ -25,41 +25,23 @@ public class HeroService {
 
     // Ritorna tutti gli eroi:
     public List<Hero> getAllHeroes() {
-        //List<Hero> heroList = new ArrayList<>(heroes.values());
         List<Hero> heroList = heroRepository.findAll();
         return heroList;
     }
 
     // Crea un nuovo eroe:
     public Hero createHero(Hero hero) {
-        /*Hero heroToAdd = hero;
-        Long newId = new Random().nextLong();
-        if (newId < 0) {
-            newId = -newId;
-        }
-        heroToAdd.setId(newId);
-        heroes.put(newId, heroToAdd);*/
         return heroRepository.save(hero);
     }
 
     // Ritorna l'eroe per id:
-    /*public Hero getHeroById(Long id) {
-        Hero heroToFind = null;
-        for (Hero hero : heroes.values()) {
-            if (hero.getId().equals(id)) {
-                heroToFind = hero;
-            }
-        }
-
-        return heroToFind;
-    }
-
-    public User createUser(User user){
-        return userRepository.save(user);
+    public Optional<Hero> getHeroById(Long id) {
+        Optional<Hero> optionalHero = heroRepository.findById(id);
+        return optionalHero;
     }
 
     // Aggiorna un eroe esistente:
-    public Optional<Hero> updateHero(Long id, Hero updatedHeroDetails) {
+    /*public Optional<Hero> updateHero(Long id, Hero updatedHeroDetails) {
         Hero existingHero = null;
         Long heroKey = null;
 
