@@ -96,7 +96,7 @@ public class HeroController {
     }
 
     // Ritorna tutti gli eroi filtrati per livello decrescente:
-    /*@GetMapping("/sorted/level-desc")
+    @GetMapping("/sorted/level-desc")
     public ResponseEntity<List<Hero>> getAllHeroesSortedByLevelDesc() {
         List<Hero> heroes = heroService.getAllHeroesSortedByLevelDesc();
 
@@ -104,5 +104,5 @@ public class HeroController {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(heroes);
-    }*/
+    }
 }

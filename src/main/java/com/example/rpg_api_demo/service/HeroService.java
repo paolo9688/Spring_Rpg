@@ -78,12 +78,7 @@ public class HeroService {
     }
 
     // Ritorna tutti gli eroi ordinati per livello decrescente:
-    /*public List<Hero> getAllHeroesSortedByLevelDesc() {
-        List<Hero> heroesSortedByLevelDesc = new ArrayList<>(heroes.values());
-
-        // ordino la lista di eroi per livello in ordine decrescente
-        heroesSortedByLevelDesc.sort((o1, o2) -> o2.getLevel().compareTo(o1.getLevel()));
-
-        return heroesSortedByLevelDesc;
-    }*/
+    public List<Hero> getAllHeroesSortedByLevelDesc() {
+        return heroRepository.findAllByOrderByLevelDesc();
+    }
 }
