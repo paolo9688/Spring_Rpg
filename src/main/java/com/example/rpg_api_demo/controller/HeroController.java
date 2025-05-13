@@ -74,7 +74,7 @@ public class HeroController {
     }
 
     // Ritorna un eroe per classe di appartenenza:
-    /*@GetMapping("/class/{className}")
+    @GetMapping("/class/{className}")
     public ResponseEntity<List<Hero>> getHeroesByClass(@PathVariable String className) {
         List<Hero> heroToFind = heroService.findHeroesByClass(className);
 
@@ -85,7 +85,7 @@ public class HeroController {
     }
 
     // Ritorna tutti gli eroi con salute maggiore di un certo valore minimo:
-    @GetMapping("/health-above")
+    /*@GetMapping("/health-above")
     public ResponseEntity<List<Hero>> getHeroesWithHealthAbove(@RequestParam Integer minHealth) {
         List<Hero> heroes = heroService.findHeroesWithHealthAbove(minHealth);
 

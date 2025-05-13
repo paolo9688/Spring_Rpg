@@ -68,20 +68,12 @@ public class HeroService {
     }
 
     // Trova gli eroi filtrati per classe:
-    /*public List<Hero> findHeroesByClass(String heroClass) {
-        List<Hero> heroesToFindList = new ArrayList<>();
-
-        for (Hero hero : heroes.values()) {
-            if (hero.getHeroClass().equals(heroClass)) {
-                heroesToFindList.add(hero);
-            }
-        }
-
-        return heroesToFindList;
+    public List<Hero> findHeroesByClass(String heroClass) {
+        return heroRepository.findByHeroClass(heroClass);
     }
 
     // Trova gli eroi con vita maggiore di un certo livello:
-    public List<Hero> findHeroesWithHealthAbove(Integer minHealth) {
+    /*public List<Hero> findHeroesWithHealthAbove(Integer minHealth) {
         List<Hero> heroesToFindList = new ArrayList<>();
 
         for (Hero hero : heroes.values()) {
