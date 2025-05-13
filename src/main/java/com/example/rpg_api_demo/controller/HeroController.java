@@ -63,9 +63,9 @@ public class HeroController {
     }
 
     // Cancella un eroe esistente:
-    /*@DeleteMapping("/delete_hero/{id}")
-    public ResponseEntity<Hero> deleteHero(@PathVariable Long id) {
-        Hero heroToDelete = heroService.deleteHero(id);
+    @DeleteMapping("/delete_hero/{id}")
+    public ResponseEntity<Optional<Hero>> deleteHero(@PathVariable Long id) {
+        Optional<Hero> heroToDelete = heroService.deleteHero(id);
 
         if (heroToDelete == null) {
             return ResponseEntity.notFound().build();
@@ -74,7 +74,7 @@ public class HeroController {
     }
 
     // Ritorna un eroe per classe di appartenenza:
-    @GetMapping("/class/{className}")
+    /*@GetMapping("/class/{className}")
     public ResponseEntity<List<Hero>> getHeroesByClass(@PathVariable String className) {
         List<Hero> heroToFind = heroService.findHeroesByClass(className);
 

@@ -57,24 +57,18 @@ public class HeroService {
     }
 
     // Cancella un eroe esistente:
-    /*public Hero deleteHero(Long id) {
-        Iterator<Hero> iterator = heroes.values().iterator();
-        Hero heroToDelete = null;
-
-        while (iterator.hasNext()) {
-            Hero currentHero = iterator.next();
-            if (currentHero.getId().equals(id)) {
-                heroToDelete = currentHero;
-                iterator.remove();
-                break;
-            }
+    public Optional<Hero> deleteHero(Long id) {
+        Optional<Hero> heroOptional = heroRepository.findById(id);
+        if (heroOptional.isPresent()) {
+            heroRepository.deleteById(id);
+            return heroOptional;
+        } else {
+            return Optional.empty();
         }
-
-        return heroToDelete;
     }
 
     // Trova gli eroi filtrati per classe:
-    public List<Hero> findHeroesByClass(String heroClass) {
+    /*public List<Hero> findHeroesByClass(String heroClass) {
         List<Hero> heroesToFindList = new ArrayList<>();
 
         for (Hero hero : heroes.values()) {
