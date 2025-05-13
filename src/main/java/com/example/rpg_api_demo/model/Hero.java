@@ -1,10 +1,6 @@
 package com.example.rpg_api_demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
@@ -16,10 +12,15 @@ public class Hero {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "name", nullable = false)
     private String name;
+    @Column(name = "class", nullable = false)
     private String heroClass;
+    @Column(name = "level", nullable = false)
     private Integer level;
+    @Column(name = "health-points", nullable = false)
     private Integer healthPoints;
+    @Column(name = "attack-power", nullable = false)
     private Integer attackpower;
 
     public Hero() {}

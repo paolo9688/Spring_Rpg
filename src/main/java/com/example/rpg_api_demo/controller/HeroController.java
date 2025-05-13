@@ -85,7 +85,7 @@ public class HeroController {
     }
 
     // Ritorna tutti gli eroi con salute maggiore di un certo valore minimo:
-    /*@GetMapping("/health-above")
+    @GetMapping("/health-above")
     public ResponseEntity<List<Hero>> getHeroesWithHealthAbove(@RequestParam Integer minHealth) {
         List<Hero> heroes = heroService.findHeroesWithHealthAbove(minHealth);
 
@@ -96,7 +96,7 @@ public class HeroController {
     }
 
     // Ritorna tutti gli eroi filtrati per livello decrescente:
-    @GetMapping("/sorted/level-desc")
+    /*@GetMapping("/sorted/level-desc")
     public ResponseEntity<List<Hero>> getAllHeroesSortedByLevelDesc() {
         List<Hero> heroes = heroService.getAllHeroesSortedByLevelDesc();
 

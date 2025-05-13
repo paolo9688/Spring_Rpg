@@ -73,20 +73,12 @@ public class HeroService {
     }
 
     // Trova gli eroi con vita maggiore di un certo livello:
-    /*public List<Hero> findHeroesWithHealthAbove(Integer minHealth) {
-        List<Hero> heroesToFindList = new ArrayList<>();
-
-        for (Hero hero : heroes.values()) {
-            if (hero.getHealthPoints() >= minHealth) {
-                heroesToFindList.add(hero);
-            }
-        }
-
-        return heroesToFindList;
+    public List<Hero> findHeroesWithHealthAbove(Integer minHealth) {
+        return heroRepository.findByHealthPointsGreaterThan(minHealth);
     }
 
     // Ritorna tutti gli eroi ordinati per livello decrescente:
-    public List<Hero> getAllHeroesSortedByLevelDesc() {
+    /*public List<Hero> getAllHeroesSortedByLevelDesc() {
         List<Hero> heroesSortedByLevelDesc = new ArrayList<>(heroes.values());
 
         // ordino la lista di eroi per livello in ordine decrescente
