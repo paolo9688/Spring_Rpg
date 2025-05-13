@@ -1,28 +1,49 @@
 package com.example.rpg_api_demo.service;
 
 import com.example.rpg_api_demo.model.Hero;
+import com.example.rpg_api_demo.repository.HeroRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
 public class HeroService {
-    private final Map<Long, Hero> heroes = new HashMap<Long, Hero>() {{
+    // N.B. La mappa mi serviva prima quando non ero ancora connesso con il database
+    // Ora che sono connesso uso heroRepository con i suoi metodi per tutte le operazioni
+
+    /*private final Map<Long, Hero> heroes = new HashMap<Long, Hero>() {{
         put(1L, new Hero(1L, "Aragorn", "Ranger", 85, 2000, 150));
         put(2L, new Hero(50L, "Pikachu", "Elf", 90, 500, 50));
         put(3L, new Hero(8L, "Ash", "Imperial", 11, 1000, 100));
-    }};
+    }};*/
+
+    @Autowired
+    private HeroRepository heroRepository;
 
     private final Long idCounter = 1L;
 
     // Ritorna tutti gli eroi:
     public List<Hero> getAllHeroes() {
-        List<Hero> heroList = new ArrayList<>(heroes.values());
+        //List<Hero> heroList = new ArrayList<>(heroes.values());
+        List<Hero> heroList = heroRepository.findAll();
         return heroList;
     }
 
+    // Crea un nuovo eroe:
+    public Hero createHero(Hero hero) {
+        /*Hero heroToAdd = hero;
+        Long newId = new Random().nextLong();
+        if (newId < 0) {
+            newId = -newId;
+        }
+        heroToAdd.setId(newId);
+        heroes.put(newId, heroToAdd);*/
+        return heroRepository.save(hero);
+    }
+
     // Ritorna l'eroe per id:
-    public Hero getHeroById(Long id) {
+    /*public Hero getHeroById(Long id) {
         Hero heroToFind = null;
         for (Hero hero : heroes.values()) {
             if (hero.getId().equals(id)) {
@@ -33,16 +54,8 @@ public class HeroService {
         return heroToFind;
     }
 
-    // Crea un nuovo eroe:
-    public Hero createHero(Hero hero) {
-        Hero heroToAdd = hero;
-        Long newId = new Random().nextLong();
-        if (newId < 0) {
-            newId = -newId;
-        }
-        heroToAdd.setId(newId);
-        heroes.put(newId, heroToAdd);
-        return heroToAdd;
+    public User createUser(User user){
+        return userRepository.save(user);
     }
 
     // Aggiorna un eroe esistente:
@@ -123,5 +136,5 @@ public class HeroService {
         heroesSortedByLevelDesc.sort((o1, o2) -> o2.getLevel().compareTo(o1.getLevel()));
 
         return heroesSortedByLevelDesc;
-    }
+    }*/
 }
