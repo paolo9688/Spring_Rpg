@@ -52,7 +52,7 @@ public class HeroController {
     }
 
     // Aggiorna un eroe esistente:
-    /*@PutMapping("/update_hero/{id}")
+    @PutMapping("/update_hero/{id}")
     public ResponseEntity<Hero> updateHero(@PathVariable Long id, @RequestBody Hero heroDetails) {
         Optional<Hero> heroToUpdate = heroService.updateHero(id, heroDetails);
 
@@ -63,7 +63,7 @@ public class HeroController {
     }
 
     // Cancella un eroe esistente:
-    @DeleteMapping("/delete_hero/{id}")
+    /*@DeleteMapping("/delete_hero/{id}")
     public ResponseEntity<Hero> deleteHero(@PathVariable Long id) {
         Hero heroToDelete = heroService.deleteHero(id);
 

@@ -41,34 +41,23 @@ public class HeroService {
     }
 
     // Aggiorna un eroe esistente:
-    /*public Optional<Hero> updateHero(Long id, Hero updatedHeroDetails) {
-        Hero existingHero = null;
-        Long heroKey = null;
-
-        for (Map.Entry<Long, Hero> entry : heroes.entrySet()) {
-            if (entry.getValue().getId().equals(id)) {
-                existingHero = entry.getValue();
-                heroKey = entry.getKey();
-                break;
-            }
+    public Optional<Hero> updateHero(Long id, Hero updatedHeroDetails) {
+        Optional<Hero> heroOptional = heroRepository.findById(id);
+        if (heroOptional.isPresent()){
+            heroOptional.get().setName(updatedHeroDetails.getName());
+            heroOptional.get().setHeroClass(updatedHeroDetails.getHeroClass());
+            heroOptional.get().setLevel(updatedHeroDetails.getLevel());
+            heroOptional.get().setHealthPoints(updatedHeroDetails.getHealthPoints());
+            heroOptional.get().setAttackpower(updatedHeroDetails.getAttackpower());
+            Hero user = heroRepository.save(heroOptional.get());
+            return Optional.of(user);
+        } else {
+            return Optional.empty();
         }
-
-        if (existingHero != null) {
-            existingHero.setName(updatedHeroDetails.getName());
-            existingHero.setHeroClass(updatedHeroDetails.getHeroClass());
-            existingHero.setLevel(updatedHeroDetails.getLevel());
-            existingHero.setHealthPoints(updatedHeroDetails.getHealthPoints());
-            existingHero.setAttackpower(updatedHeroDetails.getAttackpower());
-
-            heroes.put(heroKey, existingHero);
-            return Optional.of(existingHero);
-        }
-
-        return Optional.empty();
     }
 
     // Cancella un eroe esistente:
-    public Hero deleteHero(Long id) {
+    /*public Hero deleteHero(Long id) {
         Iterator<Hero> iterator = heroes.values().iterator();
         Hero heroToDelete = null;
 
