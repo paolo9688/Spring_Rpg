@@ -105,4 +105,17 @@ public class HeroController {
         }
         return ResponseEntity.ok(heroes);
     }
+
+    // Ritorna tutti gli eroi con livello compreso all'interno di un certo range:
+    @GetMapping("/level-range")
+    public ResponseEntity<List<Hero>> getHeroesByLevelRange(
+            @RequestParam int min,
+            @RequestParam int max) {
+        List<Hero> heroes = heroService.findHeroesByLevelRange(min, max);
+
+        if (heroes == null) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(heroes);
+    }
 }

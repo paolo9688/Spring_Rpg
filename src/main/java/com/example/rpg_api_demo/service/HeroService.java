@@ -81,4 +81,17 @@ public class HeroService {
     public List<Hero> getAllHeroesSortedByLevelDesc() {
         return heroRepository.findAllByOrderByLevelDesc();
     }
+
+    // Ritorna tutti gli eroi con livello compreso all'interno di un certo range:
+    public List<Hero> findHeroesByLevelRange(Integer minLevel, Integer maxLevel) {
+        List<Hero> heroesToFind = new ArrayList<>();
+        List<Hero> allHeroes = heroRepository.findAll();
+
+        for (Hero hero: allHeroes) {
+            if (hero.getLevel() >= minLevel && hero.getLevel() <= maxLevel) {
+                heroesToFind.add(hero);
+            }
+        }
+        return heroesToFind;
+    }
 }
