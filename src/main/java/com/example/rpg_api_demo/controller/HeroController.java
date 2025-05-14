@@ -129,4 +129,15 @@ public class HeroController {
         }
         return ResponseEntity.ok(heroes);
     }
+
+    // Ritorna il livello medio di una classe come double:
+    @GetMapping("/average-level/class/{className}")
+    public ResponseEntity<Double> getAverageLevelForClass(@PathVariable String className) {
+        Optional<Double> averageLevelForClass = heroService.getAverageLevelForClass(className);
+
+        if (averageLevelForClass.isPresent()) {
+            return ResponseEntity.ok(averageLevelForClass.get());
+        }
+        return ResponseEntity.notFound().build();
+    }
 }

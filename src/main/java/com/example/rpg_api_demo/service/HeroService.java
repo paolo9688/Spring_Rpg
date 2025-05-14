@@ -108,4 +108,26 @@ public class HeroService {
 
         return heroesToFind;
     }
+
+    // Ritorna il livello medio di una classe come double:
+    public Optional<Double> getAverageLevelForClass(String heroClass) {
+        List<Hero> heroesToFind = new ArrayList<>();
+        List<Hero> allHeroes = heroRepository.findAll();
+
+        Double averageLevel = 0.0;
+        for (Hero hero : allHeroes) {
+            if (hero.getHeroClass().equals(heroClass)) {
+                heroesToFind.add(hero);
+                averageLevel += hero.getLevel();
+            }
+        }
+
+        averageLevel = averageLevel / heroesToFind.size();
+
+        if (averageLevel.equals(null)) {
+            return Optional.empty();
+        }
+
+        return Optional.of(averageLevel);
+    }
 }
