@@ -124,7 +124,7 @@ public class HeroService {
 
         averageLevel = averageLevel / heroesToFind.size();
 
-        if (averageLevel.equals(null)) {
+        if (averageLevel == 0.0) {
             return Optional.empty();
         }
 
