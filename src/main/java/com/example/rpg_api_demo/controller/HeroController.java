@@ -118,4 +118,15 @@ public class HeroController {
         }
         return ResponseEntity.ok(heroes);
     }
+
+    // Ritorna i primi N eroi ordinati per potenza di attacco:
+    @GetMapping("/top-attack")
+    public ResponseEntity<List<Hero>> getTopNByAttack(@RequestParam int count) {
+        List<Hero> heroes = heroService.getTopNHeroesByAttackPower(count);
+
+        if (heroes == null) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(heroes);
+    }
 }

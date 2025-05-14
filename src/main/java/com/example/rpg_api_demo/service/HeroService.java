@@ -94,4 +94,18 @@ public class HeroService {
         }
         return heroesToFind;
     }
+
+    // Ritorna i primi N eroi ordinati per potenza di attacco:
+    public List<Hero> getTopNHeroesByAttackPower(Integer count) {
+        List<Hero> heroesToFind = new ArrayList<>();
+        List<Hero> allHeroes = heroRepository.findAll();
+
+        allHeroes.sort(Comparator.comparing(Hero::getAttackpower).reversed());
+
+        for (int i = 0; i <= count; i++) {
+            heroesToFind.add(allHeroes.get(i));
+        }
+
+        return heroesToFind;
+    }
 }
